@@ -19,6 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".activity.DataBingActivity">
+        </activity>
+        <activity android:name=".activity.JsoupActivity">
+        </activity>
+        <activity android:name=".activity.CsdnNewsActivity">
+
+        </activity>
     </application>
 
 </manifest>
