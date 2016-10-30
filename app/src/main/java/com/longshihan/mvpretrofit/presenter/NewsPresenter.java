@@ -16,18 +16,18 @@ import com.longshihan.mvpretrofit.view.INewsView;
 public class NewsPresenter extends BasePresenter<INewsView> {
 
     private String type;
+    private INewsModel mINewsModel;
 
     public NewsPresenter(String type) {
         this.type = type;
+        mINewsModel = new INewsModelImpl(type);
     }
-
-    INewsModel mIMainModel = new INewsModelImpl(type);
 
     public void fetch() {
         //加载进度条
         getView().showLoading();
-        if (mIMainModel != null) {
-            mIMainModel.loadnews(new INewsModel.NewsOnLoadListener() {
+        if (mINewsModel != null) {
+            mINewsModel.loadnews(new INewsModel.NewsOnLoadListener() {
                 @Override
                 public void complete(Object o) {
                     //得到数据，并给view显示

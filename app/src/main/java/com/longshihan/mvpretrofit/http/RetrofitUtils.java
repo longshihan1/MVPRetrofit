@@ -25,31 +25,85 @@ public abstract class RetrofitUtils {
     /**
      * 获取Retrofit对象
      *
-     * @param baseurl  网络的域名
+     * @param baseurl 笑话的域名
      * @return
      */
-    protected static Retrofit getRetrofit(String baseurl,String key) {
+    protected static Retrofit getRetrofit(String baseurl, String key) {
 
-        //if (null == mRetrofit) {
-
-           // if (null == mOkHttpClient) {
-                mOkHttpClient = OkHttp3Utils.getJokeHttpClient(key);
-          //  }
-
-            //Retrofit2后使用build设计模式
-            mRetrofit = new Retrofit.Builder()
-                    //设置服务器路径
-                    .baseUrl(baseurl)
-                    //添加转化库，默认是Gson
-                    .addConverterFactory(GsonConverterFactory.create())
-                    //添加回调库，采用RxJava
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    //设置使用okhttp网络请求
-                    .client(mOkHttpClient)
-                    .build();
-
-        //}
+        // if (null == mRetrofit) {
+        // if (null == mOkHttpClient) {
+        mOkHttpClient = OkHttp3Utils.getJokeHttpClient(key);
+        // }
+        //Retrofit2后使用build设计模式
+        mRetrofit = new Retrofit.Builder()
+                //设置服务器路径
+                .baseUrl(baseurl)
+                //添加转化库，默认是Gson
+                .addConverterFactory(GsonConverterFactory.create())
+                //添加回调库，采用RxJava
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                //设置使用okhttp网络请求
+                .client(mOkHttpClient)
+                .build();
+        // }
 
         return mRetrofit;
     }
+
+    /**
+     * 获取Retrofit对象
+     *
+     * @param baseurl 新闻的域名
+     * @return
+     */
+    protected static Retrofit getNewsRetrofit(String baseurl, String key) {
+
+        // if (null == mRetrofit) {
+        //   if (null == mOkHttpClient) {
+        mOkHttpClient = OkHttp3Utils.getJokeHttpClient(key);
+        //   }
+        //Retrofit2后使用build设计模式
+        mRetrofit = new Retrofit.Builder()
+                //设置服务器路径
+                .baseUrl(baseurl)
+                //添加转化库，默认是Gson
+                .addConverterFactory(GsonConverterFactory.create())
+                //添加回调库，采用RxJava
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                //设置使用okhttp网络请求
+                .client(mOkHttpClient)
+                .build();
+        //  }
+
+        return mRetrofit;
+    }
+
+    /**
+     * 获取Retrofit对象
+     *
+     * @param baseurl 微信精选的域名
+     * @return
+     */
+    protected static Retrofit getWeixinRetrofit(String baseurl, String key) {
+
+        // if (null == mRetrofit) {
+        // if (null == mOkHttpClient) {
+        mOkHttpClient = OkHttp3Utils.getJokeHttpClient(key);
+        // }
+        //Retrofit2后使用build设计模式
+        mRetrofit = new Retrofit.Builder()
+                //设置服务器路径
+                .baseUrl(baseurl)
+                //添加转化库，默认是Gson
+                .addConverterFactory(GsonConverterFactory.create())
+                //添加回调库，采用RxJava
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                //设置使用okhttp网络请求
+                .client(mOkHttpClient)
+                .build();
+        // }
+
+        return mRetrofit;
+    }
+
 }

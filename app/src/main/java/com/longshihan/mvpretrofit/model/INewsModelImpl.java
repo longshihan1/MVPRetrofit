@@ -3,7 +3,7 @@ package com.longshihan.mvpretrofit.model;
 import android.util.Log;
 
 import com.longshihan.mvpretrofit.bean.NewsBean;
-import com.longshihan.mvpretrofit.http.JokeHttpMethods;
+import com.longshihan.mvpretrofit.http.NewsHttpMethods;
 
 import rx.Subscriber;
 
@@ -21,7 +21,6 @@ public class INewsModelImpl implements INewsModel {
 
     public INewsModelImpl(String type) {
         this.type=type;
-
     }
 
     @Override
@@ -46,6 +45,6 @@ public class INewsModelImpl implements INewsModel {
                 }
             }
         };
-        JokeHttpMethods.getInstance().getNews(subscriber,"top");
+        NewsHttpMethods.getInstance().getNews(subscriber,type);
     }
 }

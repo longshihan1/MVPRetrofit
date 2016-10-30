@@ -1,11 +1,11 @@
 package com.longshihan.mvpretrofit.model;
 
-import android.util.Log;
+import android.content.Context;
 
 import com.longshihan.mvpretrofit.bean.JokeRecentlyBean;
 import com.longshihan.mvpretrofit.http.JokeHttpMethods;
-
-import rx.Subscriber;
+import com.longshihan.mvpretrofit.subscribers.ProgressSubscriber;
+import com.longshihan.mvpretrofit.subscribers.SubscriberOnNextListener;
 
 /**
  * @author Administrator
@@ -16,34 +16,17 @@ import rx.Subscriber;
  * @updateDes ${TODO}
  */
 public class IMainModelImpl implements IMainModel {
-    private Subscriber<JokeRecentlyBean> subscriber;
-    // private SubscriberOnNextListener getTopMovieOnNext;
+    private Context mContext;
 
+    public IMainModelImpl(Context context) {
+        mContext = context;
+    }
+
+    private SubscriberOnNextListener getTopMovieOnNext;
 
     @Override
     public void loadjoke(final jokeOnLoadListener listener) {
-        //网络加载数据
-        subscriber = new Subscriber<JokeRecentlyBean>() {
-
-            @Override
-            public void onCompleted() {
-                Log.e("IMainModelImpl", "获取到数据");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e("IMainModelImpl", e.toString());
-            }
-
-            @Override
-            public void onNext(JokeRecentlyBean mjokebean) {
-                if (listener != null) {
-                    listener.complete(mjokebean);
-                }
-            }
-        };
-        JokeHttpMethods.getInstance().getjuhejokelist(subscriber, 1, 20);
-      /*  getTopMovieOnNext = new SubscriberOnNextListener<JokeRecentlyBean>() {
+        getTopMovieOnNext = new SubscriberOnNextListener<JokeRecentlyBean>() {
             @Override
             public void onNext(JokeRecentlyBean subjects) {
                 if (listener != null) {
@@ -52,7 +35,6 @@ public class IMainModelImpl implements IMainModel {
             }
         };
         JokeHttpMethods.getInstance().getjuhejokelist(
-                new ProgressSubscriber<JokeRecentlyBean>(getTopMovieOnNext,RetrofitActivity.this)
-                ,2,10);*/
+                new ProgressSubscriber<JokeRecentlyBean>(getTopMovieOnNext, mContext), 2, 10);
     }
 }

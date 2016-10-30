@@ -47,7 +47,7 @@ public class JokeFragment extends BaseFragmentPresenter<IMainView, MainPresenter
 
     @Override
     protected MainPresenter createPresenter() {
-        return new MainPresenter();
+        return new MainPresenter(mContext);
     }
 
     @Override

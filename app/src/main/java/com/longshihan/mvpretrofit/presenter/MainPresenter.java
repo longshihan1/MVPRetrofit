@@ -1,5 +1,7 @@
 package com.longshihan.mvpretrofit.presenter;
 
+import android.content.Context;
+
 import com.longshihan.mvpretrofit.base.BasePresenter;
 import com.longshihan.mvpretrofit.bean.JokeRecentlyBean;
 import com.longshihan.mvpretrofit.model.IMainModel;
@@ -15,8 +17,14 @@ import com.longshihan.mvpretrofit.view.IMainView;
  * @updateDes ${TODO}
  */
 public class MainPresenter extends BasePresenter<IMainView> {
+    private Context mContext;
+    private IMainModel mIMainModel;
 
-    IMainModel mIMainModel = new IMainModelImpl();
+    public MainPresenter(Context context) {
+        mContext = context;
+        mIMainModel = new IMainModelImpl(context);
+    }
+
 
     public void fetch() {
         //加载进度条

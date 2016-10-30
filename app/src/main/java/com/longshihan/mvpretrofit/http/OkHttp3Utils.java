@@ -46,7 +46,7 @@ public class OkHttp3Utils {
      */
     public static OkHttpClient getJokeHttpClient(String key) {
 
-        if (null == mOkHttpClient) {
+       // if (null == mOkHttpClient) {
 
             //同样okhttp3后也使用build设计模式
             mOkHttpClient = new OkHttpClient.Builder()
@@ -63,7 +63,7 @@ public class OkHttp3Utils {
                     .readTimeout(30, TimeUnit.SECONDS)
                     .cache(cache)
                     .build();
-        }
+       // }
         return mOkHttpClient;
     }
 

@@ -34,10 +34,10 @@ public class NewsBean {
         private String title;
         private String date;
         private String author_name;
-        private String thumbnail_pic_s;
+        private String thumbnail_pic_s;//有这一张就够啦
         private String thumbnail_pic_s02;
-        private String thumbnail_pic_s03;
-        private String url;
+        private String thumbnail_pic_s03;//有
+        private String url;//连接
         private String uniquekey;
         private String type;
         private String realtype;
