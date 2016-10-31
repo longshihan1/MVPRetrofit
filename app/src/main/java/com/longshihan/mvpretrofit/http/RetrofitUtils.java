@@ -1,5 +1,7 @@
 package com.longshihan.mvpretrofit.http;
 
+import com.longshihan.mvpretrofit.utils.Constants;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -96,6 +98,33 @@ public abstract class RetrofitUtils {
                 .baseUrl(baseurl)
                 //添加转化库，默认是Gson
                 .addConverterFactory(GsonConverterFactory.create())
+                //添加回调库，采用RxJava
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                //设置使用okhttp网络请求
+                .client(mOkHttpClient)
+                .build();
+        // }
+
+        return mRetrofit;
+    }
+
+    /**
+     * 网页解析获取Retrofit对象
+     *
+     * @return
+     */
+    protected static Retrofit getJsoupRetrofit() {
+
+        // if (null == mRetrofit) {
+        // if (null == mOkHttpClient) {
+        mOkHttpClient = OkHttp3Utils.getJsoupHttpClient();
+        // }
+        //Retrofit2后使用build设计模式
+        mRetrofit = new Retrofit.Builder()
+                //设置服务器路径
+                .baseUrl(Constants.csdn_tagandroid)
+                //添加转化库，String
+                .addConverterFactory(new ToStringConverterFactory())
                 //添加回调库，采用RxJava
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 //设置使用okhttp网络请求

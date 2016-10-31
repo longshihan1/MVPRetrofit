@@ -46,14 +46,44 @@ public class OkHttp3Utils {
      */
     public static OkHttpClient getJokeHttpClient(String key) {
 
-       // if (null == mOkHttpClient) {
+        // if (null == mOkHttpClient) {
 
+        //同样okhttp3后也使用build设计模式
+        mOkHttpClient = new OkHttpClient.Builder()
+                //设置一个自动管理cookies的管理器
+                .cookieJar(new CookiesManager())
+                //添加拦截器
+                .addInterceptor(new MyIntercepter(key))
+                //添加网络连接器
+                //.addNetworkInterceptor(new CookiesInterceptor(App.getInstance()
+                // .getApplicationContext()))
+                //设置请求读写的超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .cache(cache)
+                .build();
+        // }
+        return mOkHttpClient;
+    }
+
+
+    /**
+     * 聚合数据的okhttpPost 封装接口（封装了统一的key）
+     *
+     * @param key
+     * @param baseurl
+     * @return
+     */
+    public static OkHttpClient getJsoupHttpClient() {
+
+       // if (null == mOkHttpClient) {
             //同样okhttp3后也使用build设计模式
             mOkHttpClient = new OkHttpClient.Builder()
                     //设置一个自动管理cookies的管理器
                     .cookieJar(new CookiesManager())
                     //添加拦截器
-                    .addInterceptor(new MyIntercepter(key))
+                    //.addInterceptor(new MyIntercepter(key))
                     //添加网络连接器
                     //.addNetworkInterceptor(new CookiesInterceptor(App.getInstance()
                     // .getApplicationContext()))
@@ -63,7 +93,7 @@ public class OkHttp3Utils {
                     .readTimeout(30, TimeUnit.SECONDS)
                     .cache(cache)
                     .build();
-       // }
+      //  }
         return mOkHttpClient;
     }
 

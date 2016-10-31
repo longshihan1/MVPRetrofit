@@ -1,5 +1,6 @@
 package com.longshihan.mvpretrofit.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.longshihan.mvpretrofit.R;
@@ -34,6 +36,8 @@ public class MainActivity extends BaseActivity {
     AppBarLayout mMainBar;
     @BindView(R.id.main_viewpager)
     ViewPager mViewPager;
+
+    private Intent mIntent;
 
     @Override
     public int getLayoutId() {
@@ -67,7 +71,28 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.action_juhe:
+                break;
+            case R.id.action_zhihu:
 
+                break;
+            case R.id.action_douban:
+
+                break;
+            case R.id.action_csdn:
+                mIntent = new Intent(this, CsdnNewsActivity.class);
+                startActivity(mIntent);
+                break;
+            case R.id.action_mayun:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
