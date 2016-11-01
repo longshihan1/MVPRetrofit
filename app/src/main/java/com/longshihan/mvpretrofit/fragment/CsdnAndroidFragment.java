@@ -3,18 +3,20 @@ package com.longshihan.mvpretrofit.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.base.BaseFragmentPresenter;
+import com.longshihan.mvpretrofit.bean.CsdnAndroidBean;
 import com.longshihan.mvpretrofit.presenter.CsdnAnPresenter;
 import com.longshihan.mvpretrofit.view.IView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CsdnAndroidFragment extends BaseFragmentPresenter<IView, CsdnAnPresenter> implements
-        IView<String> {
+        IView<List<CsdnAndroidBean>> {
 
 
     public CsdnAndroidFragment() {
@@ -48,8 +50,8 @@ public class CsdnAndroidFragment extends BaseFragmentPresenter<IView, CsdnAnPres
     }
 
     @Override
-    public void showNews(String s) {
-        Log.d("tagggg", s);
+    public void showNews(List<CsdnAndroidBean> csdnAndroidBeen) {
 
     }
+
 }

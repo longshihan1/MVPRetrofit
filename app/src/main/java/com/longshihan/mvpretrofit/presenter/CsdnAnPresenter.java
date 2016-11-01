@@ -3,9 +3,12 @@ package com.longshihan.mvpretrofit.presenter;
 import android.content.Context;
 
 import com.longshihan.mvpretrofit.base.BasePresenter;
+import com.longshihan.mvpretrofit.bean.CsdnAndroidBean;
 import com.longshihan.mvpretrofit.model.ICsdnAnModelImpl;
 import com.longshihan.mvpretrofit.model.IModel;
 import com.longshihan.mvpretrofit.view.IView;
+
+import java.util.List;
 
 /**
  * @author Administrator
@@ -28,9 +31,9 @@ public class CsdnAnPresenter extends BasePresenter<IView> {
         //加载进度条
         getView().showLoading();
         if (mModel != null) {
-            mModel.loadData(new IModel.onLoadDataListener<String>() {
+            mModel.loadData(new IModel.onLoadDataListener<List<CsdnAndroidBean>>() {
                 @Override
-                public void complete(String mjokebean) {
+                public void complete(List<CsdnAndroidBean> mjokebean) {
                     //得到数据，并给view显示
                     getView().showNews(mjokebean);
                 }
