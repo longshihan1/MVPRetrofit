@@ -6,7 +6,7 @@ import rx.Observable;
 /**
  * @author Administrator
  * @time 2016-10-31 0031 下午 10:01
- * @des ${TODO}
+ * @des csdn tag
  * @updateAuthor $Author$
  * @updateDate $Date$
  * @updateDes ${TODO}
@@ -14,5 +14,9 @@ import rx.Observable;
 public interface CsdnAnServer {
     @GET("android/news")
     Observable<String> gettagNews();
+
+    @GET("tag")
+    Observable<String> getMainNews();
+
 
 }

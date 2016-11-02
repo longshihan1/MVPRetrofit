@@ -1,8 +1,5 @@
 package com.longshihan.mvpretrofit.viewholder;
 
-import android.icu.text.SimpleDateFormat;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +9,6 @@ import com.longshihan.mvpretrofit.App;
 import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.base.BaseViewHolder_common;
 import com.longshihan.mvpretrofit.bean.NewsBean;
-
-import java.util.Date;
 
 /**
  * @author Administrator
@@ -37,7 +32,7 @@ public class NewsItem_ViewHolder extends BaseViewHolder_common<NewsBean.DataBean
         time = (TextView) itemView.findViewById(R.id.newsitem_time);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     public void bindHolder(NewsBean.DataBean newsBean) {
         Glide.clear(mImageView);
@@ -47,7 +42,8 @@ public class NewsItem_ViewHolder extends BaseViewHolder_common<NewsBean.DataBean
                 .into(mImageView);
         title.setText(newsBean.getTitle());
         source.setText(newsBean.getAuthor_name());
-        try {
+        time.setText(newsBean.getDate());
+       /* try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date d1 = new Date(System.currentTimeMillis());
             Date d2 = sdf.parse(newsBean.getDate());
@@ -63,11 +59,10 @@ public class NewsItem_ViewHolder extends BaseViewHolder_common<NewsBean.DataBean
                     time.setText("刚刚");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             time.setText(newsBean.getDate());
-        }
+        }*/
 
     }
 

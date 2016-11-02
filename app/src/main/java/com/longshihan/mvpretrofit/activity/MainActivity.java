@@ -84,7 +84,8 @@ public class MainActivity extends BaseActivity {
 
                 break;
             case R.id.action_csdn:
-                mIntent = new Intent(this, CsdnNewsActivity.class);
+
+              mIntent = new Intent(this, CsdnSortActivity.class);
                 startActivity(mIntent);
                 break;
             case R.id.action_mayun:

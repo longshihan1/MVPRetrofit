@@ -1,6 +1,7 @@
 package com.longshihan.mvpretrofit.http;
 
 import com.longshihan.mvpretrofit.server.CsdnAnServer;
+import com.longshihan.mvpretrofit.utils.Constants;
 
 import retrofit2.Retrofit;
 import rx.Observable;
@@ -20,7 +21,7 @@ public class CsdnAnHttpMethods extends RetrofitUtils {
 
     //构造方法私有
     private CsdnAnHttpMethods() {
-        csdnAnServer = getJsoupRetrofit()
+        csdnAnServer = getJsoupRetrofit(Constants.csdn_tag)
                 .create(CsdnAnServer.class);
     }
 
@@ -38,11 +39,19 @@ public class CsdnAnHttpMethods extends RetrofitUtils {
      * 网页解析接口
      *
      * @param subscriber 由调用者传过来的观察者对象
-     * @param page
-     * @param pagesize
      */
     public void getjsouplist(Subscriber<String> subscriber) {
         Observable obsevable = csdnAnServer.gettagNews();
+        ResultHttp.toSubscribe(obsevable, subscriber);
+    }
+
+    /**
+     * 主页Csdn解析  网页解析接口
+     *
+     * @param subscriber 由调用者传过来的观察者对象
+     */
+    public void getMainjsouplist(Subscriber<String> subscriber) {
+        Observable obsevable = csdnAnServer.getMainNews();
         ResultHttp.toSubscribe(obsevable, subscriber);
     }
 }

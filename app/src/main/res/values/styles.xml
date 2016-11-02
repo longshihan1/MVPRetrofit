@@ -10,4 +10,16 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TopBg">
+        <item name="android:background">#26272A</item>
+    </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="TopTitle" parent="TextColor">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

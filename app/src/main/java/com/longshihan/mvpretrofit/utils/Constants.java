@@ -16,5 +16,6 @@ public class Constants {
     public static final String weixin_key = "5ad75c5d1d705a02519ef263a75f1d6b";
     public static final String weixin_baseurl = "http://v.juhe.cn/weixin/";
     public static final String csdn_tagandroid = "http://www.csdn.net/tag/";
+    public static final String csdn_tag = "http://www.csdn.net/";
 
 }

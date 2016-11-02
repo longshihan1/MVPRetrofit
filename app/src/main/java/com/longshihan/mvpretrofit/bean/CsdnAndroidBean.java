@@ -13,6 +13,25 @@ public class CsdnAndroidBean {
     private String image;
     private String source;
     private String link;
+    private String sortLetters;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    private String tag;
+
+    public String getSortLetters() {
+        return sortLetters;
+    }
+
+    public void setSortLetters(String sortLetters) {
+        this.sortLetters = sortLetters;
+    }
 
     public String getTitle() {
         return title;

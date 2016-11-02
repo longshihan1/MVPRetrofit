@@ -1,7 +1,5 @@
 package com.longshihan.mvpretrofit.http;
 
-import com.longshihan.mvpretrofit.utils.Constants;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -113,7 +111,7 @@ public abstract class RetrofitUtils {
      *
      * @return
      */
-    protected static Retrofit getJsoupRetrofit() {
+    protected static Retrofit getJsoupRetrofit(String url) {
 
         // if (null == mRetrofit) {
         // if (null == mOkHttpClient) {
@@ -122,7 +120,7 @@ public abstract class RetrofitUtils {
         //Retrofit2后使用build设计模式
         mRetrofit = new Retrofit.Builder()
                 //设置服务器路径
-                .baseUrl(Constants.csdn_tagandroid)
+                .baseUrl(url)
                 //添加转化库，String
                 .addConverterFactory(new ToStringConverterFactory())
                 //添加回调库，采用RxJava
