@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".activity.CsdnSortActivity">
         </activity>
+        <activity android:name=".activity.CsdnTagActivity">
+        </activity>
     </application>
 
 </manifest>

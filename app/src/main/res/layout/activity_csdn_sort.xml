@@ -28,8 +28,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dip"
                 android:paddingLeft="10dip"
-                android:paddingTop="3dip"
-                android:text="A"/>
+                android:paddingTop="3dip"/>
         </LinearLayout>
 
         <TextView

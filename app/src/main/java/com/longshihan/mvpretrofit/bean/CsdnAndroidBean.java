@@ -1,5 +1,7 @@
 package com.longshihan.mvpretrofit.bean;
 
+import java.io.Serializable;
+
 /**
  * @author Administrator
  * @time 2016-10-31 0031 下午 09:55
@@ -8,7 +10,7 @@ package com.longshihan.mvpretrofit.bean;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class CsdnAndroidBean {
+public class CsdnAndroidBean implements Serializable {
     private String title;
     private String image;
     private String source;

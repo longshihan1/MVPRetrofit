@@ -24,6 +24,7 @@ public class SideBar extends View {
 	private TextView mTextDialog;
 
 	public void setTextView(TextView mTextDialog) {
+		mTextDialog.setTextColor(Color.parseColor("#000000"));
 		this.mTextDialog = mTextDialog;
 	}
 
@@ -46,9 +47,9 @@ public class SideBar extends View {
 		int singleHeight = height / b.length;
 
 		for (int i = 0; i < b.length; i++) {
-			paint.setColor(Color.parseColor("#3b3b3b3b"));
+			paint.setColor(Color.parseColor("#B8B8B8"));
 			paint.setAntiAlias(true);
-			paint.setTextSize(16);
+			paint.setTextSize(28);
 			if (i == choose) {
 				paint.setColor(Color.parseColor("#B8B8B8"));
 				paint.setFakeBoldText(true);
