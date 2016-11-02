@@ -27,7 +27,6 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
     }
 
 
-
     public void updateListView(List<CsdnAndroidBean> list) {
         this.list = list;
         notifyDataSetChanged();
@@ -47,7 +46,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
 
     public View getView(final int position, View view, ViewGroup arg2) {
         ViewHolder viewHolder = null;
-        final CsdnAndroidBean mContent = list.get(position);
+
         if (view == null) {
             viewHolder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.item, null);
@@ -57,16 +56,14 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
+        CsdnAndroidBean mContent = list.get(position);
         int section = getSectionForPosition(position);
-
         if (position == getPositionForSection(section)) {
             viewHolder.tvLetter.setVisibility(View.VISIBLE);
             viewHolder.tvLetter.setText(mContent.getSortLetters());
         } else {
             viewHolder.tvLetter.setVisibility(View.GONE);
         }
-        viewHolder.tvLetter.setText(mContent.getSortLetters());
         viewHolder.tvTitle.setText(mContent.getTitle());
         return view;
 
