@@ -1,9 +1,8 @@
 package com.longshihan.mvpretrofit.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -59,7 +58,6 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
     }
 
 
-
     @Override
     protected CsdnMainPresent createPresenter() {
         return new CsdnMainPresent(mContext);
@@ -90,6 +88,7 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
             }
         }
         Collections.sort(csdnAndroidBeen, pinyinComparator);
+        SourceDateList = csdnAndroidBeen;
         adapter = new SortAdapter(this, csdnAndroidBeen);
         sortListView.setAdapter(adapter);
         initListener();
@@ -107,7 +106,7 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
                 int position = adapter.getPositionForSection(s.charAt(0));
                 if (position != -1) {
                     sortListView.setSelection(position);
-                    Toast.makeText(CsdnSortActivity.this,s,Toast.LENGTH_SHORT);
+                    Toast.makeText(CsdnSortActivity.this, s, Toast.LENGTH_SHORT);
                 }
 
             }
@@ -118,57 +117,13 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //点击事件，添加跳转
+                Intent intent = new Intent(CsdnSortActivity.this, CsdnTagActivity.class);
+                intent.putExtra("data", SourceDateList.get(position));
+                startActivity(intent);
 
 
             }
 
-        });
-
-        /**
-         * 设置滚动监听， 实时跟新悬浮的字母的值
-         */
-        sortListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-                int section = adapter.getSectionForPosition(firstVisibleItem);
-                int nextSecPosition = adapter
-                        .getPositionForSection(section + 1);
-                if (firstVisibleItem != lastFirstVisibleItem) {
-                    ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)
-                            xuanfuLayout
-                                    .getLayoutParams();
-                    params.topMargin = 0;
-                    xuanfuLayout.setLayoutParams(params);
-                }
-                if (nextSecPosition == firstVisibleItem + 1) {
-                    View childView = view.getChildAt(0);
-                    if (childView != null) {
-                        int titleHeight = xuanfuLayout.getHeight();
-                        int bottom = childView.getBottom();
-                        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)
-                                xuanfuLayout.getLayoutParams();
-                        if (bottom < titleHeight) {
-                            float pushedDistance = bottom - titleHeight;
-                            params.topMargin = (int) pushedDistance;
-                            xuanfuLayout.setLayoutParams(params);
-                        } else {
-                            if (params.topMargin != 0) {
-                                params.topMargin = 0;
-                                xuanfuLayout.setLayoutParams(params);
-                            }
-                        }
-                    }
-                }
-                lastFirstVisibleItem = firstVisibleItem;
-            }
         });
     }
 
