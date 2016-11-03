@@ -7,6 +7,7 @@ import com.longshihan.mvpretrofit.gen.CsdnAndroidBeanDaoManager;
 import com.longshihan.mvpretrofit.http.CsdnAnHttpMethods;
 import com.longshihan.mvpretrofit.subscribers.ProgressSubscriber;
 import com.longshihan.mvpretrofit.subscribers.SubscriberOnNextListener;
+import com.longshihan.mvpretrofit.utils.CharacterParser;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,15 +29,18 @@ public class ICsdnMainModelImpl implements IModel {
     private SubscriberOnNextListener getTopMovieOnNext;
     private List<CsdnAndroidBean> mList;
     private Context mContext;
+    private CharacterParser characterParser;
 
     public ICsdnMainModelImpl(Context context) {
         mList = new ArrayList<>();
+        characterParser = CharacterParser.getInstance();
         this.mContext = context;
     }
 
     @Override
     public void loadData(final IModel.onLoadDataListener listener) {
         mList = CsdnAndroidBeanDaoManager.getInstance().getSession().loadAll(CsdnAndroidBean.class);
+
         if (mList.size() == 0) {
             getTopMovieOnNext = new SubscriberOnNextListener<String>() {
                 @Override
@@ -71,6 +75,13 @@ public class ICsdnMainModelImpl implements IModel {
                 mbean.setLink(aele.attr("href"));
                 mbean.setTitle(aele.text());
                 mbean.setTag(aele.tagName());
+                String pinyin = characterParser.getSelling(aele.text());
+                String sortString = pinyin.substring(0, 1).toUpperCase();
+                if (sortString.matches("[A-Z]")) {
+                    mbean.setSortLetters(sortString.toUpperCase());
+                } else {
+                    mbean.setSortLetters("#");
+                }
                 list.add(mbean);
             }
         }

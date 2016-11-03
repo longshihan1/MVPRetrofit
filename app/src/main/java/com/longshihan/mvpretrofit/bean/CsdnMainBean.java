@@ -9,15 +9,33 @@ package com.longshihan.mvpretrofit.bean;
  * @updateDes ${TODO}
  */
 public class CsdnMainBean {
-    String name;
     String link;
+    private String title;
+    private String image;
+    private String source;
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getLink() {

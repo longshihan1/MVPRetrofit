@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.longshihan.mvpretrofit.utils.AppManager;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -26,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
-        AppManager.getAppManager().addActivity(this);
+       // AppManager.getAppManager().addActivity(this);
         initAllMembersView(savedInstanceState);
         initData();
     }

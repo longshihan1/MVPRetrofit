@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.longshihan.mvpretrofit.utils.AppManager;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -29,7 +27,7 @@ public abstract class BaseActivityPresenter<V, T extends BasePresenter<V>> exten
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         mContext=this;
-        AppManager.getAppManager().addActivity(this);
+        //AppManager.getAppManager().addActivity(this);
         //创建presenter
         mPresenter = createPresenter();
         //内存泄漏

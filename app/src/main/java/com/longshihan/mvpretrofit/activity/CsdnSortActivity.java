@@ -16,7 +16,7 @@ import com.longshihan.mvpretrofit.adapter.SortAdapter;
 import com.longshihan.mvpretrofit.base.BaseActivityPresenter;
 import com.longshihan.mvpretrofit.bean.CsdnAndroidBean;
 import com.longshihan.mvpretrofit.presenter.CsdnMainPresent;
-import com.longshihan.mvpretrofit.utils.CharacterParser;
+import com.longshihan.mvpretrofit.utils.Constants;
 import com.longshihan.mvpretrofit.utils.PinyinComparator;
 import com.longshihan.mvpretrofit.view.IView;
 import com.longshihan.mvpretrofit.widget.SideBar;
@@ -43,7 +43,7 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
     Toolbar mToolbar;
 
     private SortAdapter adapter; // 排序的适配器
-    private CharacterParser characterParser;
+
     private List<CsdnAndroidBean> SourceDateList; // 数据
     private PinyinComparator pinyinComparator;
 
@@ -64,15 +64,11 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            String msg = "";
             switch (menuItem.getItemId()) {
                 case R.id.action_edit:
-
+                    Intent intent = new Intent(CsdnSortActivity.this, CsdnTagActivity.class);
+                    startActivity(intent);
                     break;
-            }
-
-            if (!msg.equals("")) {
-                Toast.makeText(CsdnSortActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
             return true;
         }
@@ -92,8 +88,6 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
     @Override
     protected void initData() {
         SourceDateList = new ArrayList<>();
-        pinyinComparator = new PinyinComparator();
-        characterParser = CharacterParser.getInstance();
         sideBar.setTextView(dialog);
     }
 
@@ -104,15 +98,7 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
 
     @Override
     public void showNews(List<CsdnAndroidBean> csdnAndroidBeen) {
-        for (int i = 0; i < csdnAndroidBeen.size(); i++) {
-            String pinyin = characterParser.getSelling(csdnAndroidBeen.get(i).getTitle());
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-            if (sortString.matches("[A-Z]")) {
-                csdnAndroidBeen.get(i).setSortLetters(sortString.toUpperCase());
-            } else {
-                csdnAndroidBeen.get(i).setSortLetters("#");
-            }
-        }
+        pinyinComparator = new PinyinComparator();
         Collections.sort(csdnAndroidBeen, pinyinComparator);
         SourceDateList = csdnAndroidBeen;
         adapter = new SortAdapter(this, csdnAndroidBeen);
@@ -142,8 +128,8 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //点击事件，添加跳转
-                Intent intent = new Intent(CsdnSortActivity.this, CsdnTagActivity.class);
-                intent.putExtra("data", SourceDateList.get(position));
+                Intent intent = new Intent(CsdnSortActivity.this, CsdnDetailActivity.class);
+                intent.putExtra(Constants.DATA, SourceDateList.get(position));
                 startActivity(intent);
 
 
