@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".activity.CsdnTagActivity">
         </activity>
+        <activity android:name=".activity.TagSearchActivity">
+        </activity>
     </application>
 
 </manifest>

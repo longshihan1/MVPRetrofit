@@ -2,9 +2,11 @@ package com.longshihan.mvpretrofit.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,26 +27,25 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.longshihan.mvpretrofit.R.id.toolbar;
+
 public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPresent> implements
         IView<List<CsdnAndroidBean>> {
 
 
     @BindView(R.id.country_lvcountry)
     ListView sortListView;
-    @BindView(R.id.top_layout)
-    LinearLayout xuanfuLayout;
     @BindView(R.id.dialog)
     TextView dialog;
     @BindView(R.id.sidrbar)
     SideBar sideBar;
+    @BindView(toolbar)
+    Toolbar mToolbar;
 
     private SortAdapter adapter; // 排序的适配器
-
     private CharacterParser characterParser;
     private List<CsdnAndroidBean> SourceDateList; // 数据
-
     private PinyinComparator pinyinComparator;
-    private int lastFirstVisibleItem = -1;
 
     @Override
     public int getLayoutId() {
@@ -54,13 +55,38 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         mPresenter.fetch();
-
+        mToolbar = (Toolbar) findViewById(toolbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.inflateMenu(R.menu.csdn_tag);
+        mToolbar.setOnMenuItemClickListener(onMenuItemClick);
     }
 
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            String msg = "";
+            switch (menuItem.getItemId()) {
+                case R.id.action_edit:
+
+                    break;
+            }
+
+            if (!msg.equals("")) {
+                Toast.makeText(CsdnSortActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    };
 
     @Override
     protected CsdnMainPresent createPresenter() {
         return new CsdnMainPresent(mContext);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.csdn_tag, menu);
+        return true;
     }
 
     @Override
@@ -100,7 +126,6 @@ public class CsdnSortActivity extends BaseActivityPresenter<IView, CsdnMainPrese
          * 为右边添加触摸事件
          */
         sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
-
             @Override
             public void onTouchingLetterChanged(String s) {
                 int position = adapter.getPositionForSection(s.charAt(0));

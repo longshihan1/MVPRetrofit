@@ -28,9 +28,10 @@ public class ICsdnAnModelImpl implements IModel {
 
     private Context mContext;
 
-    public ICsdnAnModelImpl(Context context) {
 
+    public ICsdnAnModelImpl(Context context) {
         this.mContext = context;
+
     }
 
     @Override
@@ -48,6 +49,7 @@ public class ICsdnAnModelImpl implements IModel {
         };
         CsdnAnHttpMethods.getInstance().getjsouplist(new ProgressSubscriber<String>
                 (getTopMovieOnNext, mContext));
+
     }
 
     private List<CsdnAndroidBean> DoingData(String subjects) {

@@ -1,5 +1,8 @@
 package com.longshihan.mvpretrofit.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +13,7 @@ import java.io.Serializable;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
+@Entity
 public class CsdnAndroidBean implements Serializable {
     private String title;
     private String image;
@@ -26,6 +30,22 @@ public class CsdnAndroidBean implements Serializable {
     }
 
     private String tag;
+
+    @Generated(hash = 1268842718)
+    public CsdnAndroidBean(String title, String image, String source, String link,
+            String sortLetters, String tag) {
+        this.title = title;
+        this.image = image;
+        this.source = source;
+        this.link = link;
+        this.sortLetters = sortLetters;
+        this.tag = tag;
+    }
+
+    @Generated(hash = 890938076)
+    public CsdnAndroidBean() {
+    }
+
 
     public String getSortLetters() {
         return sortLetters;
@@ -66,4 +86,5 @@ public class CsdnAndroidBean implements Serializable {
     public void setLink(String link) {
         this.link = link;
     }
+
 }

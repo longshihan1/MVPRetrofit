@@ -24,6 +24,7 @@ public class CsdnAnPresenter extends BasePresenter<IView> {
 
     public CsdnAnPresenter(Context context) {
         mModel = new ICsdnAnModelImpl(context);
+
     }
 
 

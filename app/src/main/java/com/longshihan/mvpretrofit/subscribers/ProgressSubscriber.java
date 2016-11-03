@@ -1,6 +1,7 @@
 package com.longshihan.mvpretrofit.subscribers;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.longshihan.mvpretrofit.subscribers.progress.ProgressCancelListener;
@@ -73,6 +74,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
         } else if (e instanceof ConnectException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else {
+            Log.e("error",e.getMessage());
             Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         dismissProgressDialog();

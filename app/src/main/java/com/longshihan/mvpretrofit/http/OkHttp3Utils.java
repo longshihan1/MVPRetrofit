@@ -55,8 +55,7 @@ public class OkHttp3Utils {
                 //添加拦截器
                 .addInterceptor(new MyIntercepter(key))
                 //添加网络连接器
-                //.addNetworkInterceptor(new CookiesInterceptor(App.getInstance()
-                // .getApplicationContext()))
+                .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 //设置请求读写的超时时间
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
@@ -77,23 +76,23 @@ public class OkHttp3Utils {
      */
     public static OkHttpClient getJsoupHttpClient() {
 
-       // if (null == mOkHttpClient) {
-            //同样okhttp3后也使用build设计模式
-            mOkHttpClient = new OkHttpClient.Builder()
-                    //设置一个自动管理cookies的管理器
-                    .cookieJar(new CookiesManager())
-                    //添加拦截器
-                    //.addInterceptor(new MyIntercepter(key))
-                    //添加网络连接器
-                    //.addNetworkInterceptor(new CookiesInterceptor(App.getInstance()
-                    // .getApplicationContext()))
-                    //设置请求读写的超时时间
-                    .connectTimeout(300, TimeUnit.SECONDS)
-                    .writeTimeout(300, TimeUnit.SECONDS)
-                    .readTimeout(300, TimeUnit.SECONDS)
-                    .cache(cache)
-                    .build();
-      //  }
+        // if (null == mOkHttpClient) {
+        //同样okhttp3后也使用build设计模式
+        mOkHttpClient = new OkHttpClient.Builder()
+                //设置一个自动管理cookies的管理器
+                .cookieJar(new CookiesManager())
+                //添加拦截器
+                //.addInterceptor(new MyIntercepter(key))
+                //添加网络连接器
+                //.addNetworkInterceptor(new CookiesInterceptor(App.getInstance()
+                // .getApplicationContext()))
+                //设置请求读写的超时时间
+                .connectTimeout(300, TimeUnit.SECONDS)
+                .writeTimeout(300, TimeUnit.SECONDS)
+                .readTimeout(300, TimeUnit.SECONDS)
+                .cache(cache)
+                .build();
+        //  }
         return mOkHttpClient;
     }
 
@@ -181,6 +180,17 @@ public class OkHttp3Utils {
             return cookies;
         }
     }
+
+    private static final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Response originalResponse = chain.proceed(chain.request());
+            return originalResponse.newBuilder()
+                    .removeHeader("Pragma")
+                    .header("Cache-Control", String.format("max-age=%d", 60))
+                    .build();
+        }
+    };
 
 
 }
