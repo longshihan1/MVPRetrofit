@@ -11,8 +11,17 @@ package com.longshihan.mvpretrofit.bean;
 public class CsdnMainBean {
     String link;
     private String title;
+    private String content;
     private String image;
     private String source;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public String getTitle() {
         return title;

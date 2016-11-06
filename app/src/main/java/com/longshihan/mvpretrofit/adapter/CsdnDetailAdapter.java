@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.bean.CsdnDetailBean;
+import com.longshihan.mvpretrofit.viewholder.CsdnDetailContentViewHolder;
+import com.longshihan.mvpretrofit.viewholder.CsdnDetailTitleViewHolder;
 
 import java.util.List;
 
@@ -35,13 +38,22 @@ public class CsdnDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        return null;
+        //加载Item View的时候根据不同TYPE加载不同的布局
+        if (viewType == ITEM_TYPE.ITEM1.ordinal()) {
+            return new CsdnDetailTitleViewHolder(mLayoutInflater.inflate(R.layout
+                    .csdn_detail_tltlelayout, parent, false));
+        } else {
+            return new CsdnDetailContentViewHolder(mLayoutInflater.inflate(R.layout
+                    .csdn_detail_contentlayout, parent, false));
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        if (holder instanceof CsdnDetailTitleViewHolder) {
+            ((CsdnDetailTitleViewHolder) holder).bindHolder(mList.get(position));
+        } else if (holder instanceof CsdnDetailContentViewHolder) {
+            ((CsdnDetailContentViewHolder) holder).bindHolder(mList.get(position).getData().get(position));
     }
 
     @Override
