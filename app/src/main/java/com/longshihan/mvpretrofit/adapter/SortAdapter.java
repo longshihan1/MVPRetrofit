@@ -1,6 +1,7 @@
 package com.longshihan.mvpretrofit.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.longshihan.mvpretrofit.R;
+import com.longshihan.mvpretrofit.activity.CsdnDetailActivity;
 import com.longshihan.mvpretrofit.bean.CsdnAndroidBean;
+import com.longshihan.mvpretrofit.utils.Constants;
 
 import java.util.List;
 
@@ -65,6 +68,11 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
             viewHolder.tvLetter.setVisibility(View.GONE);
         }
         viewHolder.tvTitle.setText(mContent.getTitle());
+        viewHolder.tvTitle.setOnClickListener(view1 -> {
+            Intent intent = new Intent(mContext, CsdnDetailActivity.class);
+            intent.putExtra(Constants.DATA, mContent);
+            mContext.startActivity(intent);
+        });
         return view;
 
     }

@@ -54,4 +54,5 @@ public class CsdnAnHttpMethods extends RetrofitUtils {
         Observable obsevable = csdnAnServer.getMainNews();
         ResultHttp.toSubscribe(obsevable, subscriber);
     }
+
 }
