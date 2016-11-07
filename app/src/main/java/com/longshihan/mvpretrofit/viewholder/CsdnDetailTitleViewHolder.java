@@ -5,8 +5,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longshihan.mvpretrofit.R;
-import com.longshihan.mvpretrofit.base.BaseViewHolder_common;
-import com.longshihan.mvpretrofit.bean.CsdnDetailBean;
 
 /**
  * @author Administrator
@@ -16,20 +14,13 @@ import com.longshihan.mvpretrofit.bean.CsdnDetailBean;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class CsdnDetailTitleViewHolder extends BaseViewHolder_common<CsdnDetailBean> {
-    private LinearLayout mLinearLayout;
-    private TextView title;
+public class CsdnDetailTitleViewHolder {
+    public LinearLayout mLinearLayout;
+    public TextView title;
 
     public CsdnDetailTitleViewHolder(View itemView) {
-        super(itemView);
         title = (TextView) itemView.findViewById(R.id.csdn_tag_detail_title);
         mLinearLayout = (LinearLayout) itemView.findViewById(R.id.csdn_tag_detail_linear);
-    }
-
-    @Override
-    public void bindHolder(CsdnDetailBean csdnDetailBean) {
-        title.setText(csdnDetailBean.getTitle());
-
     }
 
 }

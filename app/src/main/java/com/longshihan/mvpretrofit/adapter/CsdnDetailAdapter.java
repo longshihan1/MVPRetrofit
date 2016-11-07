@@ -1,3 +1,4 @@
+/*
 package com.longshihan.mvpretrofit.adapter;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import com.longshihan.mvpretrofit.viewholder.CsdnDetailTitleViewHolder;
 
 import java.util.List;
 
+*/
 /**
  * @author Administrator
  * @time 2016-11-6 0006 上午 11:02
@@ -19,7 +21,8 @@ import java.util.List;
  * @updateAuthor $Author$
  * @updateDate $Date$
  * @updateDes ${TODO}
- */
+ *//*
+
 public class CsdnDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater mLayoutInflater;
     private Context context;
@@ -56,6 +59,7 @@ public class CsdnDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((CsdnDetailContentViewHolder) holder).bindHolder(mList.get(position).getData().get(position));
     }
 
+
     @Override
     public int getItemCount() {
         int size = 0;
@@ -85,3 +89,4 @@ public class CsdnDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return ITEM_TYPE.ITEM1.ordinal();//内容
     }
 }
+*/
