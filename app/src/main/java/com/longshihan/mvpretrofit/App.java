@@ -2,6 +2,8 @@ package com.longshihan.mvpretrofit;
 
 import android.app.Application;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.controller.EaseUI;
 import com.longshihan.mvpretrofit.gen.CsdnAndroidBeanDaoManager;
 import com.longshihan.mvpretrofit.utils.Error.LocalFileHandler;
 import com.squareup.leakcanary.LeakCanary;
@@ -21,6 +23,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         this.instance = this;
+        EaseUI.getInstance().init(this,null);
+        EMClient.getInstance().setDebugMode(true);
         //配置程序异常退出处理
         Thread.setDefaultUncaughtExceptionHandler(new LocalFileHandler(this));
         if (LeakCanary.isInAnalyzerProcess(this)) {
