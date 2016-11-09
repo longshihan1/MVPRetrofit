@@ -43,6 +43,11 @@ public class CsdnDetailActivity extends BaseActivity implements CsdnDetail_exAda
     }
 
     @Override
+    public void setLayouut(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         mCsdnAndroidBean = (CsdnAndroidBean) getIntent().getSerializableExtra(Constants.DATA);
         mList = new ArrayList<>();

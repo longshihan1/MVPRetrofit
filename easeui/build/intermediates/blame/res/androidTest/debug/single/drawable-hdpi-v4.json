@@ -332,12 +332,12 @@
         "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatfrom_bg_normal.9.png"
     },
     {
-        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_record_animate_11.png",
-        "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_11.png"
-    },
-    {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_record_animate_06.png",
         "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_06.png"
+    },
+    {
+        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_record_animate_11.png",
+        "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_11.png"
     },
     {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_unread_count_bg.9.png",
@@ -432,12 +432,12 @@
         "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_07.png"
     },
     {
-        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_18.png",
-        "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_18.png"
-    },
-    {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_record_animate_01.png",
         "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_01.png"
+    },
+    {
+        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_18.png",
+        "source": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_18.png"
     },
     {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_recorder_stop_btn.png",

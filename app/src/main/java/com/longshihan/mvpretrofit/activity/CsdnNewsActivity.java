@@ -49,6 +49,11 @@ public class CsdnNewsActivity extends BaseActivity {
     }
 
     @Override
+    public void setLayouut(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         setSupportActionBar(mCsdnToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

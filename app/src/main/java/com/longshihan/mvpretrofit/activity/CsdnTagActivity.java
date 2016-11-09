@@ -40,6 +40,11 @@ public class CsdnTagActivity extends BaseActivity {
     }
 
     @Override
+    public void setLayouut(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         mTagSearchedit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 

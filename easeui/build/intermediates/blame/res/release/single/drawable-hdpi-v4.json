@@ -312,12 +312,12 @@
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chatto_bg_normal.9.png"
     },
     {
-        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_default_image.png",
-        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable-hdpi\\ease_default_image.png"
-    },
-    {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_appitem_del_btn_pressed.png",
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable-hdpi\\ease_appitem_del_btn_pressed.png"
+    },
+    {
+        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_default_image.png",
+        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable-hdpi\\ease_default_image.png"
     },
     {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing_f1.png",

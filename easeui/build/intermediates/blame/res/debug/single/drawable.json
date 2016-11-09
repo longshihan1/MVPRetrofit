@@ -16,12 +16,12 @@
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable\\ease_common_tab_bg.xml"
     },
     {
-        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_pressed_shape.xml",
-        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
-    },
-    {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_msg_state_failed_resend.xml",
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable\\ease_msg_state_failed_resend.xml"
+    },
+    {
+        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_pressed_shape.xml",
+        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
     },
     {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_edit_text_bg.xml",

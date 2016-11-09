@@ -16,12 +16,12 @@
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\anim\\push_top_out.xml"
     },
     {
-        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\anim\\fade_out.xml"
-    },
-    {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
         "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\anim\\push_top_in.xml"
+    },
+    {
+        "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
+        "source": "D:\\1\\MVPRetrofit2\\easeui\\src\\main\\res\\anim\\fade_out.xml"
     },
     {
         "merged": "D:\\1\\MVPRetrofit2\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",

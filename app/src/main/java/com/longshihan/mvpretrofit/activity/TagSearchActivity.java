@@ -14,6 +14,11 @@ public class TagSearchActivity extends BaseActivity {
     }
 
     @Override
+    public void setLayouut(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
 
     }
