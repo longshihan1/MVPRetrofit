@@ -171,7 +171,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
 
 
     /**
-     * move user to blacklist
+     * 将用户移动到黑名单
      */
     protected void moveToBlacklist(final String username){
         final ProgressDialog pd = new ProgressDialog(getActivity());

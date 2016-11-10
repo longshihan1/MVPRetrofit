@@ -16,6 +16,7 @@
         android:id="@+id/search_bar_view"
         layout="@layout/ease_search_bar_with_padding" />
 
+
     <FrameLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
