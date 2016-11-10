@@ -1,4 +1,4 @@
-package com.longshihan.mvpretrofit.activity.im;
+package com.longshihan.mvpretrofit.fragment.im;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
+import com.easemob.redpacketsdk.constant.RPConstant;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMGroup;
@@ -33,10 +34,23 @@ import com.hyphenate.util.EasyUtils;
 import com.hyphenate.util.PathUtil;
 import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.activity.MainActivity;
+import com.longshihan.mvpretrofit.activity.im.ChatRoomDetailsActivity;
+import com.longshihan.mvpretrofit.activity.im.ContextMenuActivity;
+import com.longshihan.mvpretrofit.activity.im.ForwardMessageActivity;
+import com.longshihan.mvpretrofit.activity.im.GroupDetailsActivity;
+import com.longshihan.mvpretrofit.activity.im.ImageGridActivity;
+import com.longshihan.mvpretrofit.activity.im.PickAtUserActivity;
+import com.longshihan.mvpretrofit.activity.im.UserProfileActivity;
+import com.longshihan.mvpretrofit.activity.im.VideoCallActivity;
+import com.longshihan.mvpretrofit.activity.im.VoiceCallActivity;
 import com.longshihan.mvpretrofit.domain.EmojiconExampleGroupData;
 import com.longshihan.mvpretrofit.domain.RobotUser;
 import com.longshihan.mvpretrofit.utils.Constant;
 import com.longshihan.mvpretrofit.utils.DemoHelper;
+import com.longshihan.mvpretrofit.widget.ChatRowRedPacket;
+import com.longshihan.mvpretrofit.widget.ChatRowRedPacketAck;
+import com.longshihan.mvpretrofit.widget.ChatRowTransfer;
+import com.longshihan.mvpretrofit.widget.ChatRowVoiceCall;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -428,7 +442,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
         public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
             if(message.getType() == EMMessage.Type.TXT){
                 // voice call or video call
-               /* if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false) ||
+                if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false) ||
                     message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)){
                     return new ChatRowVoiceCall(getActivity(), message, position, adapter);
                 }
@@ -439,7 +453,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                     return new ChatRowRedPacketAck(getActivity(), message, position, adapter);
                 } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_TRANSFER_PACKET_MESSAGE, false)) {//转账消息
                     return new ChatRowTransfer(getActivity(), message, position, adapter);
-                }*/
+                }
                 //end of red packet code
             }
             return null;

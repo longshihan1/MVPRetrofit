@@ -1,6 +1,7 @@
-package com.longshihan.mvpretrofit;
+package com.longshihan.mvpretrofit.activity;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +10,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,15 +31,16 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.EMLog;
+import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.activity.im.ChatActivity;
-import com.longshihan.mvpretrofit.activity.im.ContactListFragment;
-import com.longshihan.mvpretrofit.activity.im.ConversationListFragment;
 import com.longshihan.mvpretrofit.activity.im.GroupsActivity;
 import com.longshihan.mvpretrofit.activity.im.LoginActivity;
-import com.longshihan.mvpretrofit.activity.im.SettingsFragment;
 import com.longshihan.mvpretrofit.base.BaseActivity;
 import com.longshihan.mvpretrofit.bean.db.InviteMessgeDao;
 import com.longshihan.mvpretrofit.bean.db.UserDao;
+import com.longshihan.mvpretrofit.fragment.im.ConversationListFragment;
+import com.longshihan.mvpretrofit.fragment.im.ImGroupFragment;
+import com.longshihan.mvpretrofit.fragment.im.SettingsFragment;
 import com.longshihan.mvpretrofit.runtimepermissions.PermissionsManager;
 import com.longshihan.mvpretrofit.runtimepermissions.PermissionsResultAction;
 import com.longshihan.mvpretrofit.utils.Constant;
@@ -48,22 +51,30 @@ import com.umeng.update.UmengUpdateAgent;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.BindViews;
+
 public class HuanxinActivity extends BaseActivity {
 
     protected static final String TAG = "MainActivity";
-    // textview for unread message count
-    private TextView unreadLabel;
-    // textview for unread event message
-    private TextView unreadAddressLable;
 
-    private Button[] mTabs;
-    private ContactListFragment contactListFragment;
+    @BindViews({R.id.btn_conversation, R.id.btn_address_list, R.id.btn_setting})
+    List<ImageView> mTabs;
+    //未读信息个数
+    @BindView(R.id.unread_msg_number)
+    TextView unreadLabel;
+    //未操作信息个数
+    @BindView(R.id.unread_address_number)
+    TextView unreadAddressLable;
+
+
+    private ImGroupFragment contactListFragment;
     private Fragment[] fragments;
     private int index;
     private int currentTabIndex;
-    // user logged into another device
+    //多台设备
     public boolean isConflict = false;
-    // user account was removed
+    //退出
     private boolean isCurrentAccountRemoved = false;
 
     @Override
@@ -78,9 +89,8 @@ public class HuanxinActivity extends BaseActivity {
             PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
             if (!pm.isIgnoringBatteryOptimizations(packageName)) {
                 Intent intent = new Intent();
-                intent.setAction(android.provider.Settings
+                intent.setAction(Settings
                         .ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-
                 intent.setData(Uri.parse("package:" + packageName));
                 startActivity(intent);
             }
@@ -124,7 +134,7 @@ public class HuanxinActivity extends BaseActivity {
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
         conversationListFragment = new ConversationListFragment();
-        contactListFragment = new ContactListFragment();
+        contactListFragment = new ImGroupFragment();
         SettingsFragment settingFragment = new SettingsFragment();
         fragments = new Fragment[]{conversationListFragment, contactListFragment, settingFragment};
 
@@ -173,14 +183,7 @@ public class HuanxinActivity extends BaseActivity {
      * init views
      */
     private void initView() {
-        unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
-        unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-        mTabs = new Button[3];
-        mTabs[0] = (Button) findViewById(R.id.btn_conversation);
-        mTabs[1] = (Button) findViewById(R.id.btn_address_list);
-        mTabs[2] = (Button) findViewById(R.id.btn_setting);
-        // select first tab
-        mTabs[0].setSelected(true);
+        mTabs.get(0).setSelected(true);
     }
 
     /**
@@ -208,9 +211,9 @@ public class HuanxinActivity extends BaseActivity {
             }
             trx.show(fragments[index]).commit();
         }
-        mTabs[currentTabIndex].setSelected(false);
+        mTabs.get(currentTabIndex).setSelected(false);
         // set current tab selected
-        mTabs[index].setSelected(true);
+        mTabs.get(index).setSelected(true);
         currentTabIndex = index;
     }
 
@@ -253,15 +256,13 @@ public class HuanxinActivity extends BaseActivity {
     };
 
     private void refreshUIWithMessage() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                // refresh unread count
-                updateUnreadLabel();
-                if (currentTabIndex == 0) {
-                    // refresh conversation list
-                    if (conversationListFragment != null) {
-                        conversationListFragment.refresh();
-                    }
+        runOnUiThread(() -> {
+            // refresh unread count
+            updateUnreadLabel();
+            if (currentTabIndex == 0) {
+                // refresh conversation list
+                if (conversationListFragment != null) {
+                    conversationListFragment.refresh();
                 }
             }
         });
@@ -313,6 +314,8 @@ public class HuanxinActivity extends BaseActivity {
         broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
 
+
+
     public class MyContactListener implements EMContactListener {
         @Override
         public void onContactAdded(String username) {
@@ -320,17 +323,15 @@ public class HuanxinActivity extends BaseActivity {
 
         @Override
         public void onContactDeleted(final String username) {
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if (ChatActivity.activityInstance != null && ChatActivity.activityInstance
-                            .toChatUsername != null &&
-                            username.equals(ChatActivity.activityInstance.toChatUsername)) {
-                        String st10 = getResources().getString(R.string.have_you_removed);
-                        Toast.makeText(HuanxinActivity.this, ChatActivity.activityInstance
-                                .getToChatUsername() + st10, Toast.LENGTH_LONG)
-                                .show();
-                        ChatActivity.activityInstance.finish();
-                    }
+            runOnUiThread(() -> {
+                if (ChatActivity.activityInstance != null && ChatActivity.activityInstance
+                        .toChatUsername != null &&
+                        username.equals(ChatActivity.activityInstance.toChatUsername)) {
+                    String st10 = getResources().getString(R.string.have_you_removed);
+                    Toast.makeText(HuanxinActivity.this, ChatActivity.activityInstance
+                            .getToChatUsername() + st10, Toast.LENGTH_LONG)
+                            .show();
+                    ChatActivity.activityInstance.finish();
                 }
             });
         }
@@ -387,14 +388,12 @@ public class HuanxinActivity extends BaseActivity {
      * update the total unread count
      */
     public void updateUnreadAddressLable() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                int count = getUnreadAddressCountTotal();
-                if (count > 0) {
-                    unreadAddressLable.setVisibility(View.VISIBLE);
-                } else {
-                    unreadAddressLable.setVisibility(View.INVISIBLE);
-                }
+        runOnUiThread(() -> {
+            int count = getUnreadAddressCountTotal();
+            if (count > 0) {
+                unreadAddressLable.setVisibility(View.VISIBLE);
+            } else {
+                unreadAddressLable.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -473,7 +472,7 @@ public class HuanxinActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private android.app.AlertDialog.Builder exceptionBuilder;
+    private AlertDialog.Builder exceptionBuilder;
     private boolean isExceptionDialogShow = false;
     private BroadcastReceiver internalDebugReceiver;
     private ConversationListFragment conversationListFragment;
@@ -503,7 +502,7 @@ public class HuanxinActivity extends BaseActivity {
             // clear up global variables
             try {
                 if (exceptionBuilder == null)
-                    exceptionBuilder = new android.app.AlertDialog.Builder(HuanxinActivity.this);
+                    exceptionBuilder = new AlertDialog.Builder(HuanxinActivity.this);
                 exceptionBuilder.setTitle(st);
                 exceptionBuilder.setMessage(getExceptionMessageId(exceptionType));
                 exceptionBuilder.setPositiveButton(R.string.ok, (dialog, which) -> {

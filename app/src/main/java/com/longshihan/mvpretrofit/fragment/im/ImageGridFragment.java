@@ -1,4 +1,4 @@
-package com.longshihan.mvpretrofit.activity.im;
+package com.longshihan.mvpretrofit.fragment.im;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.EasyUtils;
 import com.longshihan.mvpretrofit.R;
-import com.longshihan.mvpretrofit.activity.MainActivity;
+import com.longshihan.mvpretrofit.activity.HuanxinActivity;
 import com.longshihan.mvpretrofit.base.BaseActivity;
 import com.longshihan.mvpretrofit.utils.DemoHelper;
 
@@ -51,41 +51,39 @@ public class SplashActivity extends BaseActivity {
 	protected void onStart() {
 		super.onStart();
 
-		new Thread(new Runnable() {
-			public void run() {
-				if (DemoHelper.getInstance().isLoggedIn()) {
-					// auto login mode, make sure all group and conversation is loaed before enter the main screen
-					long start = System.currentTimeMillis();
-					EMClient.getInstance().groupManager().loadAllGroups();
-					EMClient.getInstance().chatManager().loadAllConversations();
-					long costTime = System.currentTimeMillis() - start;
-					//wait
-					if (sleepTime - costTime > 0) {
-						try {
-							Thread.sleep(sleepTime - costTime);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					String topActivityName = EasyUtils.getTopActivityName(EMClient.getInstance().getContext());
-					if (topActivityName != null && (topActivityName.equals(VideoCallActivity.class.getName()) || topActivityName.equals(VoiceCallActivity.class.getName()))) {
-						// nop
-						// avoid main screen overlap Calling Activity
-					} else {
-						//enter main screen
-						startActivity(new Intent(SplashActivity.this, MainActivity.class));
-					}
-					finish();
-				}else {
-					try {
-						Thread.sleep(sleepTime);
-					} catch (InterruptedException e) {
-					}
-					startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-					finish();
-				}
-			}
-		}).start();
+		new Thread(() -> {
+            if (DemoHelper.getInstance().isLoggedIn()) {
+                // auto login mode, make sure all group and conversation is loaed before enter the main screen
+                long start = System.currentTimeMillis();
+                EMClient.getInstance().groupManager().loadAllGroups();
+                EMClient.getInstance().chatManager().loadAllConversations();
+                long costTime = System.currentTimeMillis() - start;
+                //wait
+                if (sleepTime - costTime > 0) {
+                    try {
+                        Thread.sleep(sleepTime - costTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                String topActivityName = EasyUtils.getTopActivityName(EMClient.getInstance().getContext());
+                if (topActivityName != null && (topActivityName.equals(VideoCallActivity.class.getName()) || topActivityName.equals(VoiceCallActivity.class.getName()))) {
+                    // nop
+                    // avoid main screen overlap Calling Activity
+                } else {
+                    //enter main screen
+                    startActivity(new Intent(SplashActivity.this, HuanxinActivity.class));
+                }
+                finish();
+            }else {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                }
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                finish();
+            }
+        }).start();
 
 	}
 	

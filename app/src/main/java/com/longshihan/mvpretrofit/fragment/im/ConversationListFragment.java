@@ -1,4 +1,4 @@
-package com.longshihan.mvpretrofit.activity.im;
+package com.longshihan.mvpretrofit.fragment.im;
 
 import android.content.Intent;
 import android.view.ContextMenu;
@@ -21,8 +21,9 @@ import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.NetUtils;
-import com.longshihan.mvpretrofit.HuanxinActivity;
+import com.longshihan.mvpretrofit.activity.HuanxinActivity;
 import com.longshihan.mvpretrofit.R;
+import com.longshihan.mvpretrofit.activity.im.ChatActivity;
 import com.longshihan.mvpretrofit.bean.db.InviteMessgeDao;
 import com.longshihan.mvpretrofit.utils.Constant;
 

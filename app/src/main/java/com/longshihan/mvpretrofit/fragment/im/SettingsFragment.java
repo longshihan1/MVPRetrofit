@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.longshihan.mvpretrofit.activity.im;
+package com.longshihan.mvpretrofit.fragment.im;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -36,9 +36,15 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.widget.EaseSwitchButton;
 import com.hyphenate.util.EMLog;
-import com.longshihan.mvpretrofit.HuanxinActivity;
+import com.longshihan.mvpretrofit.activity.HuanxinActivity;
 import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.activity.MainActivity;
+import com.longshihan.mvpretrofit.activity.im.BlacklistActivity;
+import com.longshihan.mvpretrofit.activity.im.DiagnoseActivity;
+import com.longshihan.mvpretrofit.activity.im.LoginActivity;
+import com.longshihan.mvpretrofit.activity.im.OfflinePushNickActivity;
+import com.longshihan.mvpretrofit.activity.im.SetServersActivity;
+import com.longshihan.mvpretrofit.activity.im.UserProfileActivity;
 import com.longshihan.mvpretrofit.utils.Constant;
 import com.longshihan.mvpretrofit.utils.DemoHelper;
 import com.longshihan.mvpretrofit.utils.DemoModel;

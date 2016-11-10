@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.easeui.controller.EaseUI;
+import com.easemob.redpacketsdk.RedPacket;
 import com.longshihan.mvpretrofit.gen.CsdnAndroidBeanDaoManager;
+import com.longshihan.mvpretrofit.utils.DemoHelper;
 import com.longshihan.mvpretrofit.utils.Error.LocalFileHandler;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -19,14 +19,16 @@ import com.squareup.leakcanary.LeakCanary;
  * @updateDes ${TODO}
  */
 public class App extends Application {
+    public static Context applicationContext;
     private static App instance;
     public static String currentUserNick = "";
     @Override
     public void onCreate() {
         super.onCreate();
         this.instance = this;
-        EaseUI.getInstance().init(this,null);
-        EMClient.getInstance().setDebugMode(true);
+        applicationContext = this;
+        /*EaseUI.getInstance().init(this,null);
+        EMClient.getInstance().setDebugMode(true);*/
         //配置程序异常退出处理
         Thread.setDefaultUncaughtExceptionHandler(new LocalFileHandler(this));
         if (LeakCanary.isInAnalyzerProcess(this)) {
@@ -35,7 +37,10 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
-
+        //red packet code : 初始化红包上下文，开启日志输出开关
+        DemoHelper.getInstance().init(applicationContext);
+        RedPacket.getInstance().initContext(this);
+        RedPacket.getInstance().setDebugMode(true);
         initGreenDAo();
 
     }

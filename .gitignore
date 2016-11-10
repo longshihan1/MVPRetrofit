@@ -7,3 +7,8 @@
 /build
 /captures
 .externalNativeBuild
+/easeui/build
+
+app/src/main/java/com/longshihan/mvpretrofit/gen/CsdnAndroidBeanDao.java
+app/src/main/java/com/longshihan/mvpretrofit/gen/DaoMaster.java
+app/src/main/java/com/longshihan/mvpretrofit/gen/DaoSession.java

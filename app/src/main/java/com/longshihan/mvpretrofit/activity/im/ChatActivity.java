@@ -9,6 +9,7 @@ import com.hyphenate.util.EasyUtils;
 import com.longshihan.mvpretrofit.R;
 import com.longshihan.mvpretrofit.activity.MainActivity;
 import com.longshihan.mvpretrofit.base.BaseActivity;
+import com.longshihan.mvpretrofit.fragment.im.ChatFragment;
 import com.longshihan.mvpretrofit.runtimepermissions.PermissionsManager;
 
 /**
